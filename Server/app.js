@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
  
 
 //DB Connectivity 
-mongoose.connect('mongodb://localhost:27017/ManageGateways');
+mongoose.connect('mongodb://localhost:27017/ManageGateways',{ useNewUrlParser: true });
 
 	var db = mongoose.connection;
 	db.on('error', console.error); // Log the error to the console when there is an error in connectivity?

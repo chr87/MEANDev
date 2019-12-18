@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'); 
- 
-const gatewaySchema = mongoose.Schema({  
+const { Schema } = require('mongoose-valid8');
+const gatewaySchema = Schema({  
 
-    _id:{
+   usi:{
         type: String,        
         required: true,
         unique: true,

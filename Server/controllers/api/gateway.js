@@ -16,7 +16,8 @@ var gateway = {
     insert:async (req,res)=>{ 
    
         try {                   
-            const gw = new Gateway({_id:req.body.id,name:req.body.name,address:req.body.address})           
+            const gw = new Gateway({usi:req.body.usi,name:req.body.name,address:req.body.address})  
+            await gw.validate();                   
             await gw.save();         
         }
         catch (error) {
@@ -27,20 +28,12 @@ var gateway = {
     },    
     delete: async(req,res)=>{
        try{     
-           await Gateway.findOneAndRemove({_id: req.body.id})
+           await Gateway.findOneAndRemove({uid: req.body.id})
        }
        catch(err){
         res.status(400).send(error) 
        }
-    //     .then((docs)=>{
-    //        if(docs) {
-    //           resolve({"success":true,data:docs});
-    //        } else {
-    //           reject({"success":false,data:"no such user exist"});
-    //        }
-    //   }).catch((err)=>{
-    //       reject(err);
-    //   })       
+        
     }
 }
 module.exports = gateway;
