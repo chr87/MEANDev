@@ -1,0 +1,24 @@
+{
+  "name": "Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "env-cmd": "^10.0.1",
+    "express": "^4.17.1",
+    "is-ip": "^3.1.0",
+    "mongoose": "^5.8.1",
+    "mongoose-valid8": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
