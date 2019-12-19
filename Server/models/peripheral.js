@@ -23,9 +23,7 @@ const userSchema = mongoose.Schema({
         required: true 
     },
     gateway:{
-        type:String
+        type:String,
     }
-
-    
 })
 module.exports = mongoose.model('peripherical', userSchema);
