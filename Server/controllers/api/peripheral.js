@@ -29,31 +29,34 @@ var peripheral = {
        
         var query = {'usi':req.body.gateway};
         try {              
-            var data=await Gateway.find({usi:req.body.gateway}); 
-             
-            const gw = new Peripheral({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status,gateway:req.body.gateway})           
-            await gw.save();
-            // var newPeripheral=data[0].peripherals;            
-            // newPeripheral.push({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status})
-            // Gateway.findOneAndUpdate(query, {$set: {peripherals:newPeripheral}}, {new:true}, function(err, doc){
+            var data=await Peripheral.find({gateway:req.body.gateway}).count(); 
+             console.log("amount"+data)
+             if(data<10){
+                const gw = new Peripheral({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status,gateway:req.body.gateway})           
+                await gw.save();
+                // var newPeripheral=data[0].peripherals;            
+                // newPeripheral.push({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status})
+                // Gateway.findOneAndUpdate(query, {$set: {peripherals:newPeripheral}}, {new:true}, function(err, doc){
 
-            // })          
-            res.json(gw);        
+                // })          
+                res.json(gw);  
+             }   
+             else{
+                throw new Error('you can only insert 10 peripheral');
+             }   
         }
         catch (error) {
-            console.log(error)
+            console.log("here"+error)
             res.status(400).send(error)
-        }    
-        
+        }          
     },    
     delete: async(req,res)=>{
        try{     
-           await Peripheral.findOneAndRemove({uid: req.body.id})
+           await Peripheral.findOneAndRemove({uid: req.params.id})
        }
        catch(err){
         res.status(400).send(error) 
-       }
-       
+       }       
     }
 }
 module.exports = peripheral;

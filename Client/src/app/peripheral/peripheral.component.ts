@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class PeripheralComponent implements OnInit {
   peripherals;
   id:string;
-  constructor(private conn:ConnService,private route:ActivatedRoute) {
+  constructor(private conn:ConnService,private route:ActivatedRoute,private router:Router) {
    this.route.params.subscribe(params => {
       this.id = params['id']; })
     this.conn.getPeripherals(this.id).subscribe((response)=>{
@@ -25,10 +25,13 @@ export class PeripheralComponent implements OnInit {
 
   ngOnInit() {
   }
-  onRemove(){
-    
+  onRemove(uid:number,i:number){
+    this.peripherals.splice(i,1);
+     this.error=null 
+    this.conn.delete(uid).subscribe();  
   }
   choise;
+  error;
   onInsert(form:NgForm){
 
     console.log(this.choise)
@@ -41,9 +44,16 @@ export class PeripheralComponent implements OnInit {
       status:this.choise,
       gateway:this.id
     }   
-    this.conn.insertP(peripheral).subscribe(response=>{this.peripherals.push(response);
-    console.log(this.peripherals)  }   
-    ) 
+    
+    this.conn.insertP(peripheral).subscribe(response=>{this.error=null;this.peripherals.push(response);
+    console.log(this.peripherals)  },error=>{      
+      this.error=error.error.errmsg;   //mongodb     
+      if(!this.error){
+        console.log(error)
+        this.error=error.message;
+      }
+       
+    });        
   }
 
 }

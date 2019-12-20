@@ -38,5 +38,8 @@ gWay:IGateway;
         
       })
     ); 
+  }
+  delete(uid:number){
+    return this.http.delete<void>("http://localhost:3000/api/gateway/peripheral/"+uid);
   } 
 }

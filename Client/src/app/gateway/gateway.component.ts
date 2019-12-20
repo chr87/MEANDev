@@ -21,13 +21,20 @@ gateways;
 
   ngOnInit() {
   }
+  error;
   onInsert(form:NgForm){
     const gateway={
       usi:form.value.usi,
       name:form.value.name,
       address:form.value.ipaddress
     }   
-    this.conn.insert(gateway).subscribe(response=>{this.gateways.push(response);  }   
+    this.conn.insert(gateway).subscribe(response=>{this.error=null;this.gateways.push(response);},
+    error=>{      
+      this.error=error.error.errmsg;     
+      if(!this.error){     
+       this.error= error.error.message;
+      }     
+    }   
     ) 
   }
   

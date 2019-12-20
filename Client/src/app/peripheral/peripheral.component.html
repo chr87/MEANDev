@@ -2,15 +2,21 @@
 <div class="container mt-5">
        <a [routerLink]="['']"> Go Back</a>
         <div class="d-flex flex-column justify-content-center">
+            <div class="row mt-3">
+            <div class="col-6 offset-3" >
+            <div *ngIf="error" class="alert alert-danger d-flex justify-content-center">
+                <p>{{error}}</p>
+            </div>
+            </div>
+            </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-3"></div>
                 <div class="col-3">
                  <h1 >Peripheral</h1>
                 <div *ngFor="let peripheral of peripherals;let i=index">
-                    <a *ngIf="peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} online</a> <a class="ml-2" *ngIf="peripheral.status" href="" (click)="onRemove(peripheral.uid)">Remove</a>
-                    <a *ngIf="!peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} offline</a>  <a class="ml-2" *ngIf="!peripheral.status" href="" (click)="onRemove(peripheral.uid)">Remove</a>
-                </div>
-                
+                    <a *ngIf="peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} online</a> <a class="ml-2" *ngIf="peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral.uid,i)">Remove</a>
+                    <a *ngIf="!peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} offline</a>  <a class="ml-2" *ngIf="!peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral.uid,i)">Remove</a>
+                </div>                
             </div>
           <div class="col-3">
              
