@@ -36,8 +36,12 @@ mongoose.connect('mongodb://localhost:27017/ManageGateways',{ useNewUrlParser: t
 // Routes set up
 var router 	= express.Router();
 var gateway = require('./controllers/api/gateway');
+var peripheral = require('./controllers/api/peripheral');
 router.get('/api/gateway',gateway.getAll)
 router.post('/api/gateway',gateway.insert)
 router.delete('/api/gateway',gateway.delete)
+router.delete('/api/gateway/peripheral/:id',peripheral.delete)
+router.get('/api/gateway/peripherals/:id',peripheral.getAllByIdGateway)
+router.post('/api/gateway/peripheral',peripheral.insert)
 app.use('/', router);
 

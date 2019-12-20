@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { ConnService } from '../conn.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+@Component({
+  selector: 'app-peripheral',
+  templateUrl: './peripheral.component.html',
+  styleUrls: ['./peripheral.component.css']
+})
+export class PeripheralComponent implements OnInit {
+  peripherals;
+  id:string;
+  constructor(private conn:ConnService,private route:ActivatedRoute) {
+   this.route.params.subscribe(params => {
+      this.id = params['id']; })
+    this.conn.getPeripherals(this.id).subscribe((response)=>{
+       
+      if(response){
+        console.log(response)
+        this.peripherals=response;
+        console.log(this.peripherals)
+      }
+      })
+   }
+
+  ngOnInit() {
+  }
+  onRemove(){
+    
+  }
+  choise;
+  onInsert(form:NgForm){
+
+    console.log(this.choise)
+    this.choise=="offline"?this.choise=false:this.choise=true;
+    console.log(this.choise)
+    const peripheral={
+      uid:form.value.uid,
+      vendor:form.value.vendor,
+      date:null,
+      status:this.choise,
+      gateway:this.id
+    }   
+    this.conn.insertP(peripheral).subscribe(response=>{this.peripherals.push(response);
+    console.log(this.peripherals)  }   
+    ) 
+  }
+
+}

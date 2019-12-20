@@ -17,10 +17,7 @@ const gatewaySchema = Schema({
         unique: true,
         ip: true,
         required: true     
-    },
-    peripherals:{
-        type:Array  
-    }
+    } 
      
 })
 module.exports = mongoose.model('gateway', gatewaySchema);

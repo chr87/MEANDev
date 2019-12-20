@@ -2,28 +2,27 @@ var mongoose = require('mongoose');
  
 const userSchema = mongoose.Schema({
    
-    udi: {
-        type: Number,        
+    uid: {
+        type: Number,   
+        unique:true,     
         required: true
         
     },
     vendor: {
-        type: String,
-        unique: true,        
+        type: String,              
         required: true     
     },
     dateCreation:{
-        type:Date,
-        unique: true,        
+        type:Date,               
         required: true 
     },
     status:{
-        type:Boolean,
-        unique: true,        
+        type:Boolean,         
         required: true 
     },
-    gateway:{
-        type:String,
+    gateway:
+    {
+        type:String
     }
 })
 module.exports = mongoose.model('peripherical', userSchema);

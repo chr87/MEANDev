@@ -1,0 +1,66 @@
+
+<div class="container mt-5">
+       <a [routerLink]="['']"> Go Back</a>
+        <div class="d-flex flex-column justify-content-center">
+            <div class="row d-flex justify-content-center">
+                <div class="col-3"></div>
+                <div class="col-3">
+                 <h1 >Peripheral</h1>
+                <div *ngFor="let peripheral of peripherals;let i=index">
+                    <a *ngIf="peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} online</a> <a class="ml-2" *ngIf="peripheral.status" href="" (click)="onRemove(peripheral.uid)">Remove</a>
+                    <a *ngIf="!peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} offline</a>  <a class="ml-2" *ngIf="!peripheral.status" href="" (click)="onRemove(peripheral.uid)">Remove</a>
+                </div>
+                
+            </div>
+          <div class="col-3">
+             
+                <router-outlet></router-outlet></div>
+            </div>
+          <div class="row mt-5">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="col-md-12 d-flex flex-column align-items-center">
+                    <!-- <app-loading-spinner></app-loading-spinner> -->
+                </div>
+           
+             <p  class="h2 text-center mb-3">Insert Peripheral</p>
+              <form   #insert="ngForm" (ngSubmit)="onInsert(insert)">   
+                
+                <div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="exampleInputEmail1">UID</label>
+                    <input type="number" class="form-control"  required ngModel name="uid" placeholder="" #uid="ngModel">
+                  
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="exampleInputPassword1">Vendor</label>
+                    <input type="text" class="form-control"required ngModel  name="vendor" placeholder="" #vendor="ngModel">
+                     
+                  </div>  
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                      <label for="exampleInputPassword1" class="mr-2">Status</label>
+                      <!-- <input type="email"  class="form-control" id="exampleInputPassword1" required ngModel name="ipaddress" placeholder="" #ipaddress="ngModel" > -->
+                      <select [(ngModel)]="choise" name="choice" id="" ngModel  placeholder="" #choice="ngModel">
+                          <option value="offline">Offline</option>
+                          <option value="online">Online</option>
+                      </select>
+                    </div>                         
+                </div>         
+            </div>       
+              
+            <div class="row">
+              <div class="col-sm-6">
+            <button type="submit"  class="btn btn-primary text-uppercase px-4 py-2 my-3">Insert</button>
+          </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-3">
+           
+        </div>
+        </div>
+        </div>
+        </div>

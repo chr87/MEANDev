@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { GatewayComponent } from './gateway/gateway.component';
  
 import { HttpClientModule } from '@angular/common/http';
+import { PeripheralComponent } from './peripheral/peripheral.component';
 @NgModule({
   declarations: [
     AppComponent,
-    GatewayComponent
+    GatewayComponent,
+    PeripheralComponent
   ],
   imports: [
     BrowserModule,

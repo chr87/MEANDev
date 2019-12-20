@@ -14,11 +14,12 @@ var gateway = {
         }
     },     
     insert:async (req,res)=>{ 
-   
+    console.log(req.body.usi,req.body.name,req.body.address)
         try {                   
             const gw = new Gateway({usi:req.body.usi,name:req.body.name,address:req.body.address})  
             await gw.validate();                   
-            await gw.save();         
+            await gw.save();
+            res.json(gw);         
         }
         catch (error) {
             console.log(error)
@@ -28,7 +29,7 @@ var gateway = {
     },    
     delete: async(req,res)=>{
        try{     
-           await Gateway.findOneAndRemove({uid: req.body.id})
+           await Gateway.findOneAndRemove({usi: req.body.id})
        }
        catch(err){
         res.status(400).send(error) 

@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class GatewayComponent implements OnInit {
 gateways;
   constructor(private conn:ConnService) {
-    this.conn.getUsers().subscribe((response)=>{
+    this.conn.getGateways().subscribe((response)=>{
     if(response){
       console.log(response)
       this.gateways=response;
@@ -21,12 +21,14 @@ gateways;
 
   ngOnInit() {
   }
-  // onInsert(form:NgForm){
-  //   const gateway={
-      
-  //   }
-  //   this.conn.insert( ).subscribe(response=>{   }   
-  //   )           
-       
-  // }
+  onInsert(form:NgForm){
+    const gateway={
+      usi:form.value.usi,
+      name:form.value.name,
+      address:form.value.ipaddress
+    }   
+    this.conn.insert(gateway).subscribe(response=>{this.gateways.push(response);  }   
+    ) 
+  }
+  
 }

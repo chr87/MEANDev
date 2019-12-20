@@ -4,12 +4,16 @@
     <div class="d-flex flex-column justify-content-center">
         <div class="row d-flex justify-content-center">
             <div class="col-3"></div>
-            <div class="col-6">
-             <h1>Gateways</h1>
+            <div class="col-3">
+             <h1 >Gateways</h1>
             <div *ngFor="let gateway of gateways;let i=index">
-                <a class="text-center" >gateways#{{i}}: {{gateway.name}}</a>
+                <a [routerLink]="['/peripheral',gateway.usi]" class="text-center" >gateways#{{i}}: {{gateway.name}}</a>
             </div>
+            
         </div>
+      <div class="col-3">
+         
+            <router-outlet></router-outlet></div>
         </div>
       <div class="row mt-5">
         <div class="col-sm-3"></div>
@@ -50,7 +54,9 @@
         </div>
       </form>
     </div>
-    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+       
+    </div>
     </div>
     </div>
     </div>
