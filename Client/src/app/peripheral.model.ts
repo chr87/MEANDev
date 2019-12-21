@@ -1,5 +1,5 @@
 export interface IPeripheral{
-    uid:number;
+    _id:number;
     vendor:string;
     date?:string;
     status:boolean;

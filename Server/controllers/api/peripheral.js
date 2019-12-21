@@ -16,9 +16,9 @@ var peripheral = {
     },  
     getAllByIdGateway:async(req,res)=>{
         try{
-            // var data=await Gateway.find({usi:req.params.id})
+            
            var data=await Peripheral.find({gateway:req.params.id})
-         //   console.log(data[0].peripherals)
+       
             res.json(data);
          } 
          catch(err){
@@ -27,18 +27,14 @@ var peripheral = {
     },   
     insert:async (req,res)=>{ 
        
-        var query = {'usi':req.body.gateway};
+      
         try {              
             var data=await Peripheral.find({gateway:req.body.gateway}).count(); 
-             console.log("amount"+data)
+             
              if(data<10){
-                const gw = new Peripheral({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status,gateway:req.body.gateway})           
+                const gw = new Peripheral({_id:req.body._id,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status,gateway:req.body.gateway})           
                 await gw.save();
-                // var newPeripheral=data[0].peripherals;            
-                // newPeripheral.push({uid:req.body.uid,vendor:req.body.vendor,dateCreation:new Date(),status:req.body.status})
-                // Gateway.findOneAndUpdate(query, {$set: {peripherals:newPeripheral}}, {new:true}, function(err, doc){
-
-                // })          
+                          
                 res.json(gw);  
              }   
              else{
@@ -46,16 +42,16 @@ var peripheral = {
              }   
         }
         catch (error) {
-            console.log("here"+error)
+           
             res.status(400).send(error)
         }          
     },    
     delete: async(req,res)=>{
        try{     
-           await Peripheral.findOneAndRemove({uid: req.params.id})
+           await Peripheral.findOneAndRemove({_id: req.params.id})
        }
        catch(err){
-        res.status(400).send(error) 
+        res.status(400).send(err) 
        }       
     }
 }

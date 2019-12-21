@@ -1,5 +1,5 @@
 export interface IGateway{
-    usi:string;
+    _id:string;
     name:string;
     address:string;
     peripheral?:any;

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
  
 const userSchema = mongoose.Schema({
    
-    uid: {
+    _id: {//uid
         type: Number,   
         unique:true,     
         required: true

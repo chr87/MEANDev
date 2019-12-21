@@ -24,7 +24,7 @@ gateways;
   error;
   onInsert(form:NgForm){
     const gateway={
-      usi:form.value.usi,
+      _id:form.value.usi,
       name:form.value.name,
       address:form.value.ipaddress
     }   

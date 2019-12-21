@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 const { Schema } = require('mongoose-valid8');
 const gatewaySchema = Schema({  
 
-   usi:{
+   _id:{//usi
         type: String,        
         required: true,
         unique: true,
