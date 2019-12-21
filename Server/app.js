@@ -38,6 +38,7 @@ var router 	= express.Router();
 var gateway = require('./controllers/api/gateway');
 var peripheral = require('./controllers/api/peripheral');
 router.get('/api/gateway',gateway.getAll)
+router.get('/api/gateway/:id',gateway.getGatewayById)
 router.post('/api/gateway',gateway.insert)
 router.delete('/api/gateway',gateway.delete)
 router.delete('/api/gateway/peripheral/:id',peripheral.delete)

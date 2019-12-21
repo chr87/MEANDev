@@ -19,6 +19,10 @@ gWay:IGateway;
    
     return this.http.get<{[key:string]:IGateway}>("http://localhost:3000/api/gateway");
   }
+  getGatewaysById(id:string){
+
+    return this.http.get<IGateway>("http://localhost:3000/api/gateway/"+id);
+  }
   getPeripherals(id:string){
    
     return this.http.get<{[key:string]:IPeripheral}>("http://localhost:3000/api/gateway/peripherals/"+id);

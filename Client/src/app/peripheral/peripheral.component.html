@@ -8,20 +8,7 @@
                 <p>{{error}}</p>
             </div>
             </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-3"></div>
-                <div class="col-3">
-                 <h1 >Peripheral</h1>
-                <div *ngFor="let peripheral of peripherals;let i=index">
-                    <a *ngIf="peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} online</a> <a class="ml-2" *ngIf="peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral.uid,i)">Remove</a>
-                    <a *ngIf="!peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral.uid}} offline</a>  <a class="ml-2" *ngIf="!peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral.uid,i)">Remove</a>
-                </div>                
-            </div>
-          <div class="col-3">
-             
-                <router-outlet></router-outlet></div>
-            </div>
+            </div>            
           <div class="row mt-5">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
@@ -68,5 +55,18 @@
            
         </div>
         </div>
+        <div class="row d-flex justify-content-center">
+                <div class="col-3"></div>
+                <div class="col-3">
+                 <h2 >Peripherals</h2>
+                <div *ngFor="let peripheral of peripherals;let i=index">
+                    <a *ngIf="peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral._id}} online</a> <a class="ml-2" *ngIf="peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral._id,i)">Remove</a>
+                    <a *ngIf="!peripheral.status" class="text-center" >peripheral#{{i}}: {{peripheral._id}} offline</a>  <a class="ml-2" *ngIf="!peripheral.status" [routerLink]="['/peripheral/',peripheral.gateway]"  (click)="onRemove(peripheral._id,i)">Remove</a>
+                </div>                
+            </div>
+          <div class="col-3">
+             
+                <router-outlet></router-outlet></div>
+            </div>
         </div>
         </div>

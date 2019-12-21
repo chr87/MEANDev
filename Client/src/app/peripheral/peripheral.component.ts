@@ -38,7 +38,7 @@ export class PeripheralComponent implements OnInit {
     this.choise=="offline"?this.choise=false:this.choise=true;
     console.log(this.choise)
     const peripheral={
-      uid:form.value.uid,
+      _id:form.value.uid,
       vendor:form.value.vendor,
       date:null,
       status:this.choise,
