@@ -9,17 +9,17 @@ import { NgForm } from '@angular/forms';
 })
 export class GatewayComponent implements OnInit {
 gateways;
-  constructor(private conn:ConnService) {
-    this.conn.getGateways().subscribe((response)=>{
-    if(response){
-      console.log(response)
-      this.gateways=response;
-      console.log(this.gateways)
-    }
-    })
+  constructor(private conn:ConnService) {   
    }
 
   ngOnInit() {
+    this.conn.getGateways().subscribe((response)=>{
+      if(response){
+        console.log(response)
+        this.gateways=response;
+        console.log(this.gateways)
+      }
+      })
   }
   error;
   onInsert(form:NgForm){

@@ -5,13 +5,16 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-peripheral',
   templateUrl: './peripheral.component.html',
-  styleUrls: ['./peripheral.component.css']
+  styleUrls: ['./peripheral.component.css'] 
 })
 export class PeripheralComponent implements OnInit {
   peripherals;
   id:string;
-  constructor(private conn:ConnService,private route:ActivatedRoute,private router:Router) {
-   this.route.params.subscribe(params => {
+  constructor(private conn:ConnService,private route:ActivatedRoute,private router:Router) {  
+   }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
       this.id = params['id']; })
     this.conn.getPeripherals(this.id).subscribe((response)=>{
        
@@ -21,9 +24,6 @@ export class PeripheralComponent implements OnInit {
         console.log(this.peripherals)
       }
       })
-   }
-
-  ngOnInit() {
   }
   onRemove(uid:number,i:number){
     this.peripherals.splice(i,1);
@@ -50,9 +50,8 @@ export class PeripheralComponent implements OnInit {
       this.error=error.error.errmsg;   //mongodb     
       if(!this.error){
         console.log(error)
-        this.error=error.message;
-      }
-       
+        this.error=error.message;      }  
+       if(error.status=='401') this.error="you can only insert 10 peripheral in this gateway"  
     });        
   }
 

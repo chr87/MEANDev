@@ -15,7 +15,7 @@ gWay:IGateway;
 //  result:{[key: string]: IGateway}; 
   constructor(private http:HttpClient,private router:Router) {      
   }
-  getGateways(){
+  getGateways(): Observable<{[key:string]:IGateway}>{
    
     return this.http.get<{[key:string]:IGateway}>("http://localhost:3000/api/gateway");
   }

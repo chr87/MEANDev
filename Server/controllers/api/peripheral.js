@@ -38,11 +38,12 @@ var peripheral = {
                 res.json(gw);  
              }   
              else{
-                throw new Error('you can only insert 10 peripheral');
+                throw new Error('only 10');
              }   
         }
         catch (error) {
-           
+           console.log(error)
+           if(error.message=='only 10') res.status(401).send(error)
             res.status(400).send(error)
         }          
     },    
