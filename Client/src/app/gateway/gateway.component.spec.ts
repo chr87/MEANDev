@@ -2,13 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GatewayComponent } from './gateway.component';
 
-import { Observable} from 'rxjs';
+import { Observable,of} from 'rxjs';
 import{IGateway} from '../gateway.model'
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from '@angular/forms';
 import {RouterModule} from '@angular/router'; 
 import{HttpClientTestingModule} from '@angular/common/http/testing'
  import { ConnService } from '../conn.service';
+ 
 describe('GatewayComponent', () => {
   let component: GatewayComponent;
   let fixture: ComponentFixture<GatewayComponent>;
@@ -37,16 +38,16 @@ describe('GatewayComponent', () => {
   //   fixture.detectChanges();
   //   expect(app.gateways).toBe(undefined);
   // });
-  it('shouldn fetch data successfully if called asynchronously', async(() => {
+  it('shouldn fetch data successfully if called asynchronously',
+   async(() => {
     let fixture = TestBed.createComponent(GatewayComponent);
     let app = fixture.debugElement.componentInstance;
     let dataService = fixture.debugElement.injector.get(ConnService);
-    let spy = spyOn(dataService, 'getGateways').and.returnValue(Observable.create(()=>{return {_id:'dd',name:'ff',address:'1.1.1.1'}} ));
+    let gateway:[{[key:string]:IGateway}]=[{'0':{'_id':'ddd','name':'ddd','address':'5.5.5.5'}}]
+    let spy = spyOn(dataService, 'getGateways').and.returnValue(of(gateway));
         
-    fixture.detectChanges();   
-    fixture.whenStable().then(() => {
-      console.log("hereeeeeeeeeeeeeee"+app.gateways)
-    expect(app.gateways).toBe({});
-    });
-  }));
+   fixture.detectChanges();   
+   expect(app.gateways).toBe(gateway);   
+  })
+  );
 });

@@ -11,7 +11,6 @@ export class GatewayComponent implements OnInit {
 gateways;
   constructor(private conn:ConnService) {   
    }
-
   ngOnInit() {
     this.conn.getGateways().subscribe((response)=>{
       if(response){
